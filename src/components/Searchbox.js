@@ -4,12 +4,12 @@ function Searchbox() {
     return (
         <div>
              <div pt-6>
-        <br>
+        <br/>
     </div>
-    <nav className="navbar  searchbox mt-5 logged-in">
-        <div className="container-fluid d-flex justify-content-center">
-            <form className="d-flex search_box col-12 col-lg-6">
-                <input id="inputSearch" className="form-control card-filter search-input" type="search" placeholder="Buscar" aria-label="Search">
+    <nav class="navbar  searchbox mt-5 logged-in">
+        <div class="container-fluid d-flex justify-content-center">
+            <form class="d-flex search_box col-12 col-lg-6">
+                <input id="inputSearch" class="form-control card-filter search-input" type="search" placeholder="Buscar" aria-label="Search" />
               </form>
         </div>
     </nav>
