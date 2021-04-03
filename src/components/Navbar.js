@@ -52,7 +52,7 @@ function Navbar() {
     </nav>
 
 {/* /* <!-- Modal REGISTRO--> */ }
-    <div className="modal fade" id="signupModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div className="modal fade" id="signupModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div className="modal-dialog">
             <div className="modal-content">
                 <div className="modal-header">
@@ -81,26 +81,26 @@ function Navbar() {
     </div>
 
 {/*     <!-- Modal INGRESO-->*/} 
-   <div class="modal fade" id="signinModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ingreso</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+   <div className="modal fade" id="signinModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div className="modal-dialog">
+            <div className="modal-content">
+                <div className="modal-header">
+                    <h5 className="modal-title" id="exampleModalLabel">Ingreso</h5>
+                    <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
+                <div className="modal-body">
                     <form id="login-form">
-                        <div class="form-group  pb-3">
-                            <input type="email" id="login-email" class="form-control" placeholder="Mail" required />
+                        <div className="form-group  pb-3">
+                            <input type="email" id="login-email" className="form-control" placeholder="Mail" required />
                         </div>
-                        <div class="form-group pb-3">
-                            <input type="password" id="login-password" class="form-control" placeholder="Contraseña" required />
+                        <div className="form-group pb-3">
+                            <input type="password" id="login-password" className="form-control" placeholder="Contraseña" required />
                         </div>
                         <div id="mensaje-error-ingreso"></div>
-                        <button type="submit" class="btn btn-secondary btn-block">
+                        <button type="submit" className="btn btn-secondary btn-block">
                              Ingresa
                          </button>
-                        <button type="button" class="btn btn-info" id="googleLogin">
+                        <button type="button" className="btn btn-info" id="googleLogin">
                              Ingresa con googlee
                      </button>
                     </form>
