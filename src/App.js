@@ -1,21 +1,20 @@
 import React from 'react';
 import './App.css';
+import {BrowserRouter, Switch, Route } from 'react-router-dom'
+import Home from './components/Home'
 
-import Navbar from './components/Navbar'
-import Searchbox from './components/Searchbox'
-import Carrousel from './components/Carrousel'
-import Movies from './components/Movies'
-import Footer from './components/Footer'
+import Trailer from './components/Trailer' 
 
 function App() {
   return (
-    <>
-   <Navbar></Navbar>
-   <Searchbox></Searchbox>
-  {/*  <Carrousel></Carrousel>*/}
-    <Movies></Movies>
-    <Footer></Footer>
-   </>
+    <BrowserRouter>
+    <Switch>
+      <Route path="/home" component={Home}/>
+      
+   <Route path="/trailer/:title" component={Trailer} />
+
+    </Switch>
+    </BrowserRouter>
   );
 }
 

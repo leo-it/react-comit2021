@@ -1,4 +1,6 @@
 import React, { useEffect, useState} from 'react';
+import { Link } from 'react-router-dom';
+
 
 const Movies = () => {
     const [ peliculas, setPeliculas ] = useState();
@@ -12,18 +14,17 @@ const Movies = () => {
         .then(res => {
             if(res){
                 setPeliculas(res.movie);
-                console.log("todook setPeliculas");
             }else{
-                console.log("no esta bien");
+                console.log("no esta bien res.movie");
             }
         });
     }, []);    
+    console.log(peliculas);
     return(
     <>
 
 <div className="container">
-                        <div className="row row-cols-1 row-cols-md-5 g-4 p-4 pelis2 " id="">
-
+<div className="row row-cols-1 row-cols-md-5 g-4 p-4 pelis2 " id="">
 
  {   peliculas ?
 
@@ -33,39 +34,22 @@ const Movies = () => {
             <>
             
             
-        <button type="button "  className=" tarj" data-bs-toggle="modal" data-bs-target="#modalPeli{peli._id}" >
+        <button type="button "   className="link-container tarj"  id={peli._id} >
                     <div className="col  ">
                <div className="card lg-3 tarjeta ">
+        <        Link to={"/trailer/"+peli.title} className="link">
                  <img src={peli.img} className="card-img-top" alt="..."/>
+                 </Link>
                  <div className="card-body">
                    <p className="text-dark" >{peli.title}</p>
                    <p  className="card-text" id="genero"> Genero: {peli.gender} </p>
-
+                   <div className="link-container">
+        </div>
                </div>
            </div>
            </div>
         </button>
-{/*         <!-- Modal --> */}     
-               <div className="modal fade" id="modalPeli${peli._id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                      <div className="modal-dialog modal-xl">
-                        <div className="modal-content">
-                          <div className="modal-header">
-                            <h5 className="modal-title" id="exampleModalLabel">${peli.title}</h5>
-                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                              </div>
-                              <div className="modal-body ratio ratio-16x9" id="">
-              
-                              <iframe width="560" height="315" src="${peli.url}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>              
-         
-                              </div>
-                          <div className="modal-footer">
-                          <p  className="card-text  col-lg-12" id="genero">Genero: ${peli.gender} </p>
-                   <p className="card-text col-lg-12">Descripcion: ${peli.description}</p>    
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-               
+
             </>
         )
     })
