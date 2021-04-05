@@ -1,40 +1,45 @@
 
 import { useParams } from 'react-router-dom';
-import React, { useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 
 const Trailer = () => {
 
- const {title}= useParams();
-console.log(title);
+    const { title } = useParams();
+    console.log(title);
 
-const [ trailer, setTrailer ] = useState();
-useEffect(()=> {
-    fetch(`http://localhost:8000/api/movie_title/${title}`,{
-        method:'GET',
-        header:{
-            'Content-Type': 'application/json'
+    const [trailer, setTrailer] = useState();
+
+    useEffect(() => {
+        const obtenerDatos = async () => {
+            const data = await fetch(`http://localhost:8000/api/movie_title/${title}`)
+            const peli = await data.json()
+            setTrailer(peli.movie)
         }
-    }).then(res => res.json())
-    .then(res => {
-        if(res){
-            setTrailer(res.movie);
-            console.log(" esta bien res.trailer");
-            console.log(res.movie);
-        }else{
-            console.log("no esta bien res.trailer");
-        }
-    });
-}, []);    
-console.log(trailer);
+        obtenerDatos()
+    }, [title])
+    console.log(trailer);
+if(trailer){
+    return (
+        <>
 
-  return (
-    <>
+       <div className="container text-center">
+            <div className="" id="" tabIndex="-1" >
 
-        ---------nombre 
-         <h1>{trailer.gender}</h1> 
-         <h1>{trailer.description}</h1>
-   </>
-  );
+                <h5 className="">{trailer.title} </h5>
+
+                 <iframe width="1120" height="630" src={trailer.url} frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+ 
+            </div>
+            <p className="card-text  col-lg-12" id="genero">Genero: {trailer.gender} </p>
+            <p className="card-text col-lg-12">Descripcion: {trailer.description}</p>
+            </div>
+        </>
+    );
+}else{
+    return (
+    <>...........cargando</>
+    )
+}
 }
 
 export default Trailer;
