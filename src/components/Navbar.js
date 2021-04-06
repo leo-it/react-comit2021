@@ -1,18 +1,23 @@
 import React, {useState} from 'react'
+import { Link } from 'react-router-dom';
 
 
 function Navbar() {
     return (
         <div> 
   <nav className="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-        <div className="container-fluid d-flex flex-row-reverse bd-highlight  ">
+        <div className="container-fluid d-flex flex-row-reverse bd-highlight link-container ">
             <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
             </button>
-            <div className="collapse navbar-collapse row " id="navbarNav">
+            <div className="collapse  navbar-collapse row " id="navbarNav">
+
+           
                 <ul className="navbar-nav w-100">
-                    <li className="nav-item  col-lg-3">
-                        <a className="nav-link active" aria-current="page" href=""> PelisPlus</a>
+                    <li className="nav-item  col-lg-3"> 
+                    <Link to="/home" className="link">
+                       <a className="nav-link active" aria-current="page" href=""> PelisPlus</a>
+                     </Link>
                     </li>
                     <div className="container"></div>
                     <li className="nav-item dropdown col-lg-2 logged-in">
@@ -109,17 +114,11 @@ function Navbar() {
             </div>
         </div>
     </div>
-
-
-
-
-
-
-
-
-
+<div className="pt-5"></div>
 
         </div>
+
+
     )
 }
 

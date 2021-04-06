@@ -10,6 +10,7 @@ const Home = () => {
       return (
     <>
    <Navbar></Navbar>
+   <Searchbox></Searchbox>
    <Movies></Movies>
    
    </>

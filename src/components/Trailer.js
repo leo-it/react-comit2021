@@ -1,6 +1,9 @@
 
 import { useParams } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
+import Footer from './Footer'
+import Navbar from './Navbar'
+
 
 const Trailer = () => {
 
@@ -21,6 +24,10 @@ const Trailer = () => {
 if(trailer){
     return (
         <>
+<Navbar></Navbar>
+<div className="container pt-5"/>
+<div className="container pt-5"/>
+<div className="container pt-5"/>
 
        <div className="container text-center">
             <div className="" id="" tabIndex="-1" >
@@ -33,6 +40,7 @@ if(trailer){
             <p className="card-text  col-lg-12" id="genero">Genero: {trailer.gender} </p>
             <p className="card-text col-lg-12">Descripcion: {trailer.description}</p>
             </div>
+            <Footer></Footer>
         </>
     );
 }else{
