@@ -1,8 +1,37 @@
 import React, {useState} from 'react'
 import { Link } from 'react-router-dom';
+import { useFirebaseApp, useUser } from 'reactfire';
+import 'firebase/auth'
 
 
 function Navbar() {
+    const [ email, setEmail ] = useState('')
+    const [ password, setPassword ] = useState('')
+    const firebase = useFirebaseApp()
+    const user = useUser()
+    
+
+    const submitSignin =  (e) => {
+        e.preventDefault()
+       firebase.auth().createUserWithEmailAndPassword(email,password)
+    }
+    const submitLogin =  (e) => {
+        e.preventDefault()
+
+        firebase.auth().signInWithEmailAndPassword(email, password)
+console.log("login");
+    }
+const logout =  () => {
+    console.log("salir");
+     firebase.auth().signOut()
+   
+}
+if (user.data){
+    console.log(user);
+
+console.log(user.data.email);
+}
+
     return (
         <div> 
   <nav className="navbar navbar-expand-lg navbar-light bg-light fixed-top">
@@ -20,6 +49,8 @@ function Navbar() {
                      </Link>
                     </li>
                     <div className="container"></div>
+                    {
+                        user.data &&
                     <li className="nav-item dropdown col-lg-2 logged-in">
                         <a className="nav-link dropdown-toggle gender-filter" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                           Genero
@@ -30,16 +61,24 @@ function Navbar() {
                             <li><a className="dropdown-item " href="#drama" id="drama">Drama</a></li>
                         </ul>
                     </li>
-
+                        }
+                          {
+                        user.data &&
                     <li className="nav-item col-lg-2 logged-in">
                         <a className="nav-link" href="http://127.0.0.1:5500/assets/html/foro.html" id="foro">Foro</a>
                     </li>
+}
+                    {
+                        !user.data &&
                     <li className="nav-item col-lg-2 logged-out ">
                         <a className="nav-link " href="#" data-bs-toggle="modal" data-bs-target="#signinModal">Ingresar</a>
-                    </li>
+                    </li>}
+                    {
+                        !user.data &&
                     <li className="nav-item col-lg-2 logged-out">
                         <a className="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#signupModal">Registrar</a>
                     </li>
+                        }
                     <div className="mt-4"></div>
                     <li className="nav-item logged-in ">
                         <p className=" pt-2" id="perfilEmail"></p>
@@ -48,37 +87,41 @@ function Navbar() {
                     <li className="nav-item logged-in "  id="perfilPhoto">
                     </li>
                     <div className="mt-4"></div>
+               {
+                        user.data &&
                     <li className="nav-item logged-in " >
-                        <a className="nav-link" href="#" id="logout">  Salir</a>
+                        <button className="nav-link" onClick={logout}  >  Salir</button>
                     </li>
+                     } 
                 </ul>
             </div>
         </div>
     </nav>
 
 {/* /* <!-- Modal REGISTRO--> */ }
+
     <div className="modal fade" id="signupModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div className="modal-dialog">
             <div className="modal-content">
                 <div className="modal-header">
-                    <h5 className="modal-title" id="exampleModalLabel">Registro</h5>
+                    <h5 className="modal-title" id="exampleModalLabel">Registro {user.email}</h5>
                     <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div className="modal-body">
                     <form id="signup-form">
                         <div className="form-group  pb-3">
-                            <input type="email" id="signup-email" className="form-control" placeholder="Mail" required />
+                            <input onChange={ (ev) => setEmail(ev.target.value)} type="email" id="email" className="form-control" placeholder="Mail" required />
                         </div>
                         <div className="form-group pb-3">
-                            <input type="password" id="signup-password1" className="form-control" placeholder="Contraseña, al menos 6 caracteres " required />
+                            <input onChange={ (ev) => setPassword(ev.target.value)} type="password" id="password" className="form-control" placeholder="Contraseña, al menos 6 caracteres " required />
                             
-                        </div>
+                        </div>{/* 
                         <div className="form-group  pb-3">
                             <input type="password" id="signup-password2" className="form-control" placeholder="Repita la contraseña " required />
                             <div id="password-registro"></div>
                             <div id="mensaje-error-registro"></div>
-                        </div>
-                        <button type="submit" className="btn btn-primary">Registrate</button>
+                        </div> */}
+                        <button onClick={submitSignin} type="" className="btn btn-primary">Registrate</button>
                     </form>
                 </div>
             </div>
@@ -102,7 +145,7 @@ function Navbar() {
                             <input type="password" id="login-password" className="form-control" placeholder="Contraseña" required />
                         </div>
                         <div id="mensaje-error-ingreso"></div>
-                        <button type="submit" className="btn btn-secondary btn-block">
+                        <button onClick={submitLogin}  className="btn btn-secondary btn-block">
                              Ingresa
                          </button>
                         <button type="button" className="btn btn-info" id="googleLogin">

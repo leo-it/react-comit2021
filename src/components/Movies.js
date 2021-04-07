@@ -19,7 +19,7 @@ const Movies = () => {
             }
         });
     }, []);    
-    console.log(peliculas);
+  //  console.log(peliculas);
     return(
     <>
 
