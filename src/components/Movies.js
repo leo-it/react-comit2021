@@ -2,23 +2,8 @@ import React, { useEffect, useState} from 'react';
 import { Link } from 'react-router-dom';
 
 
-const Movies = () => {
-    const [ peliculas, setPeliculas ] = useState();
-    useEffect(()=> {
-        fetch(`http://localhost:8000/api/movie`,{
-            method:'GET',
-            header:{
-                'Content-Type': 'application/json'
-            }
-        }).then(res => res.json())
-        .then(res => {
-            if(res){
-                setPeliculas(res.movie);
-            }else{
-                console.log("no esta bien res.movie");
-            }
-        });
-    }, []);    
+const Movies = ({movies}) => {
+     const peliculas = movies
   //  console.log(peliculas);
     return(
     <>
@@ -28,12 +13,11 @@ const Movies = () => {
 
  {   peliculas ?
 
-    peliculas.map(peli => {
+    peliculas.map((peli, index) => {
        /*  console.log(peli); */
         return (
-            <>
-            
-            
+            <div key={`peli-${index}`}>
+                        
         <button type="button "   className="link-container tarj"  id={peli._id} >
                     <div className="col  ">
                <div className="card lg-3 tarjeta ">
@@ -50,7 +34,7 @@ const Movies = () => {
            </div>
         </button>
 
-            </>
+            </div>
         )
         
     })

@@ -1,13 +1,12 @@
 import React, {useState, useEffect} from 'react'
-import Movies from './Movies'
 import { Link } from 'react-router-dom';
 
  const API= "http://localhost:8000/api/movie_title/"
 
 class Searchbox extends React.Component {
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state= {
             data:[],
             searchTerm: '',
@@ -20,11 +19,10 @@ class Searchbox extends React.Component {
         if(!this.state.searchTerm){
             return this.setState({error: "Por favor escribe un texto valido"})
         }
-        
         const res = await fetch(`${API}${this.state.searchTerm}`)
         const data =await res.json();
         console.log(data.movie)
-        this.setState({data: data.movie})
+        this.props.onSearch(data.movie)
 
         if(this.state.searchTerm){
             return this.setState({error: data.movie.description})

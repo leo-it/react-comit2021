@@ -44,8 +44,8 @@ console.log(user.data.email);
            
                 <ul className="navbar-nav w-100">
                     <li className="nav-item  col-lg-3"> 
-                    <Link to="/home" className="link">
-                       <a className="nav-link active" aria-current="page" href=""> PelisPlus</a>
+                    <Link to="/home" className="link nav-link active" aria-current="page">
+                        PelisPlus
                      </Link>
                     </li>
                     <div className="container"></div>
@@ -110,7 +110,7 @@ console.log(user.data.email);
                 <div className="modal-body">
                     <form id="signup-form">
                         <div className="form-group  pb-3">
-                            <input onChange={ (ev) => setEmail(ev.target.value)} type="email" id="email" className="form-control" placeholder="Mail" required />
+                            <input onChange={ (ev) => setEmail(ev.target.value)} type="email" id="email" className="form-control" autoComplete="off" placeholder="Mail" required />
                         </div>
                         <div className="form-group pb-3">
                             <input onChange={ (ev) => setPassword(ev.target.value)} type="password" id="password" className="form-control" placeholder="Contraseña, al menos 6 caracteres " required />

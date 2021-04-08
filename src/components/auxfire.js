@@ -1,12 +1,12 @@
-
+/*  
     const [ email, setEmail ] = useState('')
     const [ password, setPassword ] = useState('')
-/*     const firebase = useFirebaseApp()
- */    const [user, setUser ]= useState("")
+   const firebase = useFirebaseApp()
+    const [user, setUser ]= useState("")
     const [emailError, setEmailError]=useState("")
     const [PasswordError, setPasswordError]=useState("")
     const [hasAccount, setHasAccount]= useState(false)
-/* 
+ 
     const clearImputs = () => {
         setEmail("")
         setPassword("")
