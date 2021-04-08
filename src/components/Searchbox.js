@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import { Link } from 'react-router-dom';
 
- const API= "http://localhost:8000/api/movie_title/"
+ const API= "http://localhost:8000/api/movie_search/"
 
 class Searchbox extends React.Component {
 
